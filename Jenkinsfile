@@ -1,4 +1,6 @@
 node {
+    checkout scm
+    withEnv(['CI=true']) {
     docker.image('node:lts-buster-slim').inside('-p 3000:3000') {
     stage('Build') {
         sh 'npm install'
@@ -12,4 +14,5 @@ node {
         sh './jenkins/scripts/kill.sh'
     }
   }
+ }
 }
