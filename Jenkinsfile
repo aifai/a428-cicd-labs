@@ -8,6 +8,9 @@ node {
     stage('Test') {
         sh './jenkins/scripts/test.sh'
     }
+    stage('Manual Approval') {
+       input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+    }
     stage('Deploy') {
         sh './jenkins/scripts/deliver.sh'
         sh 'sleep 60'
